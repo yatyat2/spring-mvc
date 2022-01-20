@@ -18,7 +18,13 @@
   <tr th:each="user : ${users}">
     <td><span th:text="${user.name}"/></td>
     <td><span th:text="${user.email}"/></td>
-    <td> <a th:href="@{/details/{userName}(userName=${user.name})}">상세보기</a>   <a href="/form">삭제하기</a>   </td>
+    <td> <a th:href="@{/details/{userName}(userName=${user.name})}">상세보기</a>
+      <form th:action="@{/list/{userName}(userName=${user.name})}" method="post" >
+        <input name="_method" type="hidden" value="DELETE" />
+
+        <button >삭제하기</button>
+      </form>
+      </td>
   </tr>
   </tbody>
 </table>

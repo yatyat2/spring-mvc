@@ -4,6 +4,7 @@ import com.example.springmvc.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class PageController {
@@ -19,6 +20,14 @@ public class PageController {
     public String list(Model model){
         model.addAttribute("users", userRepository.users);
         return "list";
+    }
+
+    @DeleteMapping("/list/{userName}")
+    public RedirectView delete(@PathVariable("userName") String userName, Model model){
+        userRepository.delete(userName);
+        model.addAttribute("users", userRepository.users);
+
+        return new RedirectView("/list");
     }
 
     @GetMapping("/details/{userName}")

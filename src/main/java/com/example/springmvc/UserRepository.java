@@ -15,4 +15,10 @@ public class UserRepository {
     User find(String userName) {
         return users.stream().filter(user -> userName.equals(user.getName())).findAny().orElse(null);
     }
+
+    void delete(String userName) {
+        User tempUser = users.stream().filter(user -> userName.equals(user.getName())).findAny().orElse(null);
+        users.remove(tempUser);
+        return;
+    }
 }
