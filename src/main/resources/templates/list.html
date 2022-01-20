@@ -11,12 +11,14 @@
   <tr>
     <th> 이름 </th>
     <th> 이메일 </th>
+    <th> 액션 </th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="user : ${users}">
     <td><span th:text="${user.name}"/></td>
     <td><span th:text="${user.email}"/></td>
+    <td> <a th:href="@{/details/{userName}(userName=${user.name})}">상세보기</a>   <a href="/form">삭제하기</a>   </td>
   </tr>
   </tbody>
 </table>

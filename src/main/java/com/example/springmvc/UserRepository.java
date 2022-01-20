@@ -8,7 +8,11 @@ import java.util.List;
 public class UserRepository {
     static List<User> users = new ArrayList<User>();
 
-    void createUser(User user){
+    void createUser(User user) {
         users.add(user);
+    }
+
+    User find(String userName) {
+        return users.stream().filter(user -> userName.equals(user.getName())).findAny().orElse(null);
     }
 }

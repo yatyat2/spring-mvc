@@ -3,9 +3,7 @@ package com.example.springmvc;
 import com.example.springmvc.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PageController {
@@ -21,6 +19,12 @@ public class PageController {
     public String list(Model model){
         model.addAttribute("users", userRepository.users);
         return "list";
+    }
+
+    @GetMapping("/details/{userName}")
+    public String details(@PathVariable("userName") String userName, Model model){
+        model.addAttribute("user", userRepository.find(userName));
+        return "details";
     }
 
     @PostMapping("/list")
